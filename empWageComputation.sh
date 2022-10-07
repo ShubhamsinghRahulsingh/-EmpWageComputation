@@ -1,16 +1,19 @@
 echo " Welcome to Employee wage computation Program"
 
-isPresent=1;
-randomCheck=$((RANDOM%2));
-
-if [ $isPresent -eq $randomCheck ]
-then
-echo "Employee is Present "
+isPartTime=1;
+isFullTime=2;
 empRatePerHr=20;
+
+randomCheck=$((RANDOM%3));
+
+if [ $isPartTime -eq $randomCheck ]
+then
+empHrs=4;
+elif [ $isFullTime -eq $randomCheck ]
+then
 empHrs=8;
-Salary=$(($empRatePerHr*$empHrs));
-echo "DailyWage"=$Salary
 else
-echo "Employee is Absent "
-echo "DailyWage="$Salary
+empHrs=0;
 fi
+Salary=$(($empHrs*empRatePerHr))
+echo "Salary=$Salary"
