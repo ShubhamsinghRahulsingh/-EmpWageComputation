@@ -1,31 +1,33 @@
 echo " Welcome to Employee wage computation Program"
 
-numWorkingDays=20;
 empRatePerHr=20;
+totalSalary=0;
 totalWorkingHour=0;
 day=1;
 
+function calculateWorkingHour() {
+	case $randomCheck in
+		2)
+	         empHrs=8;;
+                1)
+	         empHrs=4;;
+		0)
+	         empHrs=0;;
+esac;
+	echo $empHrs;
+}
+
 while [[ $day -le 20 && $totalWorkingHour -lt 40 ]]
 do
-	randomCheck=$((RANDOM%3));
-	case $randomCheck in
-		0)
-		empHrs=0;;
-                1)
-		empHrs=4;;
-		2)
-		empHrs=8;;
-
-esac
-
-	totalWorkingHour=$(($totalWorkingHour+$empHrs))
-
-	if [ $totalWorkingHour -gt 40 ]
-	then
-		totalWorkingHour=$(($totalWorkingHour - $empHrs))
+randomCheck=$((RANDOM%3))
+	wHour=$(calculateWorkingHour $randomCheck);
+	totalWorkingHour=$(($totalWorkingHour+$wHour));
+	if [ $totalWorkingHour -gt 40 ] 
+then
+		totalWorkingHour=$(($totalWorkingHour - $wHour));
 		break;
 	fi
-	salary=$(($empRatePerHr*$empHrs))
+	salary=$(($empRatePerHr*$wHour));
 	totalSalary=$(($totalSalary + $salary));
 	((day++));
 done
